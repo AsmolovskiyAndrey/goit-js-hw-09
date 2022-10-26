@@ -41,11 +41,13 @@ function timerStart() {
     if (isActive) { //! не позволяет запустить таймер несколько раз
         return
     }
+    showTimeOnDisplay(convertMs(selectedDateGlobal - Date.now())); //! запуск в первый раз(до setInterval)
 
     const intervalId = setInterval(() => {
         const deltaTime = selectedDateGlobal - Date.now();
         // console.log(convertMs(deltaTime));
         showTimeOnDisplay(convertMs(deltaTime));
+        isActive = true;
         
         if (deltaTime <= 900) { //! остановит таймер на 0
             clearInterval(intervalId);
@@ -53,10 +55,9 @@ function timerStart() {
             Notiflix.Notify.success('Time is over', //! выведет сообщение что время вышло
             {timeout: 6000,},
             );
+            startBtn.disabled = true;
         }
     }, 1000);
-
-    isActive = true;
 
 }
 
