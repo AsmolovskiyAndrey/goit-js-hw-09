@@ -5,7 +5,7 @@ let getEl = selector => document.querySelector(selector);
 getEl('button').addEventListener('click', onStartFunc);
 getEl('.form').addEventListener('input', onInputFunc);
 
-data = { delay: 0, step: 0, amount: 0 };
+let data = { delay: 0, step: 0, amount: 0 };
 
 function onStartFunc(evt) {
   evt.preventDefault();
